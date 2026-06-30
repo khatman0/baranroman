@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400..700&family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --ink: #0B0A08;
+  --ink-soft: #15130F;
+  --gold: #C9A227;
+  --gold-bright: #E8C468;
+  --gold-dim: #7A661F;
+  --parchment: #EDE6D6;
+  --parchment-dim: #B8AF9C;
+  --line: rgba(201, 162, 39, 0.25);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ink);
+  color: var(--parchment);
+  font-family: 'Vazirmatn', sans-serif;
+  direction: rtl;
+  line-height: 1.8;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ambient candlelight texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 900px 600px at 15% -10%, rgba(201,162,39,0.07), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 100%, rgba(201,162,39,0.05), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.font-display {
+  font-family: 'Noto Naskh Arabic', serif;
+}
+
+/* ---------- Header ---------- */
+header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 6%;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gold-bright);
+  letter-spacing: 0.5px;
+}
+
+nav { display: flex; gap: 36px; }
+
+nav a {
+  font-size: 0.95rem;
+  color: var(--parchment-dim);
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover, nav a.active { color: var(--gold-bright); }
+
+nav a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.35s ease;
+}
+
+nav a:hover::after, nav a.active::after { width: 100%; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 6%;
+}
+
+.hero-eyebrow {
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  color: var(--gold-dim);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.1s;
+}
+
+.hero h1 {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  font-weight: 700;
+  color: var(--parchment);
+  max-width: 16ch;
+  line-height: 1.3;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.3s;
+}
+
+.hero h1 .gold { color: var(--gold-bright); }
+
+.hero p.lede {
+  margin-top: 28px;
+  max-width: 46ch;
+  color: var(--parchment-dim);
+  font-size: 1.05rem;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.5s;
+}
+
+.hero-cta {
+  margin-top: 44px;
+  display: flex;
+  gap: 18px;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.7s;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.btn {
+  display: inline-block;
+  padding: 14px 34px;
+  border-radius: 2px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border: 1px solid var(--gold-dim);
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 600;
+}
+.btn-primary:hover { background: var(--gold-bright); }
+
+.btn-ghost {
+  color: var(--parchment);
+  border-color: var(--line);
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold-bright); }
+
+/* seal / flourish divider */
+.flourish {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin: 10px auto 0;
+  color: var(--gold-dim);
+}
+.flourish .line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(to var(--dir, left), transparent, var(--gold-dim));
+}
+
+/* ---------- Sections ---------- */
+section { position: relative; z-index: 1; padding: 110px 6%; }
+
+.section-head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 64px;
+}
+
+.section-head .eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  color: var(--gold-dim);
+  display: block;
+  margin-bottom: 16px;
+}
+
+.section-head h2 {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  color: var(--parchment);
+}
+
+.section-head p {
+  margin-top: 18px;
+  color: var(--parchment-dim);
+}
+
+/* ---------- Story cards ---------- */
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.story-card {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--ink-soft), rgba(21,19,15,0.4));
+  padding: 38px 30px;
+  position: relative;
+  transition: border-color 0.35s ease, transform 0.35s ease;
+}
+
+.story-card:hover {
+  border-color: var(--gold-dim);
+  transform: translateY(-4px);
+}
+
+.story-card .num {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 0.85rem;
+  color: var(--gold-dim);
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.story-card h3 {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 1.5rem;
+  color: var(--gold-bright);
+  margin-bottom: 14px;
+}
+
+.story-card p {
+  color: var(--parchment-dim);
+  font-size: 0.95rem;
+  margin-bottom: 22px;
+}
+
+.story-card .meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--gold-dim);
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--line);
+  padding: 50px 6%;
+  text-align: center;
+  color: var(--parchment-dim);
+  font-size: 0.88rem;
+}
+
+footer .brand {
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* ---------- Reader page ---------- */
+.reader-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.toc {
+  position: sticky;
+  top: 110px;
+  padding: 0 28px 40px 0;
+  border-left: 1px solid var(--line);
+}
+
+.toc h4 {
+  font-family: 'Noto Naskh Arabic', serif;
+  color: var(--gold-bright);
+  font-size: 1.1rem;
+  margin-bottom: 22px;
+}
+
+.toc a {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--parchment-dim);
+  padding: 9px 0;
+  border-bottom: 1px dashed transparent;
+  transition: color 0.25s ease;
+}
+
+.toc a:hover, .toc a.active { color: var(--gold-bright); }
+
+.chapter {
+  padding: 0 40px 80px;
+  max-width: 680px;
+}
+
+.chapter .chapter-num {
+  font-size: 0.82rem;
+  letter-spacing: 3px;
+  color: var(--gold-dim);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.chapter h2 {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 2rem;
+  color: var(--parchment);
+  margin-bottom: 36px;
+}
+
+.chapter p {
+  color: var(--parchment-dim);
+  margin-bottom: 22px;
+  font-size: 1.05rem;
+}
+
+/* illuminated initial */
+.chapter p.lead::first-letter {
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 3.6rem;
+  color: var(--gold-bright);
+  float: right;
+  margin-left: 12px;
+  line-height: 0.8;
+  padding-top: 8px;
+}
+
+.ink-divider {
+  width: 100%;
+  height: 28px;
+  margin: 50px 0;
+  background: none;
+}
+
+@media (max-width: 860px) {
+  .reader-layout { grid-template-columns: 1fr; }
+  .toc {
+    position: relative;
+    top: 0;
+    border-left: none;
+    border-bottom: 1px solid var(--line);
+    padding: 0 0 30px;
+    margin-bottom: 40px;
+  }
+  .chapter { padding: 0 0 60px; }
+}
+
+@media (max-width: 640px) {
+  nav { gap: 20px; }
+  nav a { font-size: 0.85rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+:focus-visible {
+  outline: 1px solid var(--gold-bright);
+  outline-offset: 3px;
+}
